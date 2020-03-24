@@ -1,0 +1,30 @@
+CXX := g++
+DIR := out
+
+MYLIB := mylib
+DYLIBNAME := lib$(MYLIB).so
+MAJOR := 5
+MINOR := 1
+RELEASE := 10
+
+SONAME := $(DYLIBNAME).$(MAJOR)
+VLIBNAME :=  $(SONAME).$(MINOR).$(RELEASE)
+
+OBJECTS := $(DIR)/hello.o $(DIR)/here.o $(DIR)/bye.o
+
+$(DIR)/%.o: %.cpp
+	mkdir -p out
+	$(CXX) -c -o $@ $<
+
+$(DIR)/test_make: $(DIR)/$(VLIBNAME)
+	$(CXX) -o $@ main.cpp -Wl,-rpath,. -L$(DIR) -l$(MYLIB)
+	install_name_tool -change out/$(SONAME) @rpath/$(SONAME) $(DIR)/test_make
+	
+$(DIR)/$(VLIBNAME): $(OBJECTS)
+	$(CXX) -Wl,-install_name,$(DIR)/$(SONAME) -shared -o $@ $^ 
+	ln -s $(VLIBNAME) $(DIR)/$(DYLIBNAME)
+	ln -s $(VLIBNAME) $(DIR)/$(SONAME)
+
+.PHONY: clean
+clean:
+	rm -rf $(DIR)
