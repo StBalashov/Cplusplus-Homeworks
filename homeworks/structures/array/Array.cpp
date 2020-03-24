@@ -1,6 +1,4 @@
-//
-// Created by Кирилл Чулков on 11/11/2018.
-//
+
 
 #include "Array.h"
 

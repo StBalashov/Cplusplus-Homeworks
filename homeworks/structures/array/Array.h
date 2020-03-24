@@ -1,6 +1,3 @@
-//
-// Created by Кирилл Чулков on 11/11/2018.
-//
 
 #ifndef ARRAY_ARRAY_H
 #define ARRAY_ARRAY_H

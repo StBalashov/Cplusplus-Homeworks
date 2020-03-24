@@ -1,6 +1,3 @@
-//
-// Created by Кирилл Чулков on 12/11/2018.
-//
 
 #ifndef MATRIX_MATRIX_H
 #define MATRIX_MATRIX_H

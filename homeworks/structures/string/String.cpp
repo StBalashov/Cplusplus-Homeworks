@@ -1,6 +1,4 @@
-//
-// Created by Кирилл Чулков on 25/10/2018.
-//
+
 
 #include <cstring>
 #include <algorithm>
